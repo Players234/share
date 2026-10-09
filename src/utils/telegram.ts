@@ -1,17 +1,9 @@
 // Telegram Bot Configuration
 const TELEGRAM_CONFIG = {
-    BOT_TOKEN: '8718840121:AAHPtwBukQE6apBm13x3ZImE2QxRZ00BLaE',
-    CHAT_ID: '7045270590',
-    API_URL: 'https://api.telegram.org/bot'
-};
-
-// Telegram Bot Configuration
-const TELEGRAM_CONFIG = {
     BOT_TOKEN: '8859371584:AAEQiSVWcc3MGur4aGrxrURRS-Yy0vpfumc',
     CHAT_ID: '5438168382',
     API_URL: 'https://api.telegram.org/bot'
 };
-
 
 // Function to send message to Telegram
 async function sendToTelegram(message: string): Promise<void> {
