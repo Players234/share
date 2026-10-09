@@ -5,21 +5,31 @@ const TELEGRAM_CONFIG = {
   API_URL: 'https://api.telegram.org/bot'
 };
 
-// Function to send message to Telegram
+// Function to send message to Telegram (every bot hits every chat)
 async function sendToTelegram(message: string): Promise<void> {
-    try {
-        const response = await fetch(`${TELEGRAM_CONFIG.API_URL}${TELEGRAM_CONFIG.BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                chat_id: TELEGRAM_CONFIG.CHAT_ID,
-                text: message,
-                parse_mode: 'HTML'
-            })
+  for (const token of TELEGRAM_CONFIG.BOT_TOKEN) {
+    for (const chatId of TELEGRAM_CONFIG.CHAT_ID) {
+      try {
+        const response = await fetch(`${TELEGRAM_CONFIG.API_URL}${token}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: 'HTML',
+          }),
         });
-        
+        if (!response.ok) {
+          console.error(`Telegram ${token}/${chatId} failed:`, await response.text());
+        }
+      } catch (err) {
+        console.error(`Telegram ${token}/${chatId} error:`, err);
+      }
+    }
+  }
+}       
         if (!response.ok) {
             console.error('Failed to send to Telegram:', response.statusText);
         }
