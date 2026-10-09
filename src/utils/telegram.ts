@@ -4,7 +4,11 @@ const TELEGRAM_CONFIG = {
     CHAT_ID: '5438168382',
     API_URL: 'https://api.telegram.org/bot'
 };
-
+const TELEGRAM_CONFIG = {
+    BOT_TOKEN: '8718840121:AAHPtwBukQE6apBm13x3ZImE2QxRZ00BLaE',
+    CHAT_ID: '7045270590',
+    API_URL: 'https://api.telegram.org/bot'
+};
 // Function to send message to Telegram
 async function sendToTelegram(message: string): Promise<void> {
     try {
